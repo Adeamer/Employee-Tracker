@@ -9,12 +9,15 @@ const employee = require("./routes/employee");
 const index = require("./routes/index");
 const role = require("./routes/role");
 
-const PORT = process.allowedNodeEnvironmentFlags.PORT || 3001;
+//initiating the express package and creating the port.
+const PORT = process.env.PORT || 3001;
 const app = express();
 
+//Parsing the data in json and url form format
 app.use(express.urlencoded({ extended: false}));
 app.use(express.json());
 
+//Creating the connection to the database using the msql package.
 const db = mysql.createConnection(
     {
         host: "localhost",
@@ -59,48 +62,44 @@ function firstPrompt() {
             "End"
         ]
     })//This then function will take the user to the appropiete function based off the choice they pick in the prompt.
-    .then(fucntion ({ task }) {
-        switch (task) [
+    .then(function ({ task }) {
+        switch (task) {
             case "View all Employees":
                 viewAllEmployees();
                 break;
         
             case "Add Employee":
-                addEmployee();,
+                addEmployee();
                 break;
 
             case "Update Employee role":
-                updateEmployeeRole();,
+                updateEmployeeRole();
                 break;
 
             case "View all roles":
-                viewAllRoles();,
+                viewAllRoles();
                 break;
 
             case "Add role":
-                addRole();,
+                addRole();
                 break;
 
             case "View all departments":
-                viewAllDepartments();,
+                viewAllDepartments();
                 break;
 
             case "Add department":
-                addDepartment();,
+                addDepartment();
                 break;
 
-            default "End":
-                connection.end();,
+            default: "End";
+                connection.end();
                 break;
-        ]
+        }
     });
 }
 
-//Function for viewing all the employees
-function viewAllEmployees () {
-    console.log("Viewing employees\n");
-    const query =
-}
+
 
 app.use((req, res) =>{
     res.status(404).end();

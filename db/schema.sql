@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS employee_db;
-CREAT DATABASE employee_db;
+CREATE DATABASE employee_db;
 
 USE DATABASE employee_db;
 
@@ -30,6 +30,3 @@ CREATE TABLE employees (
     REFERENCES employees (id)
 );
 
-SELECT * FROM employees;
-SELECT * FROM roles;
-SELECT * FROM department;
