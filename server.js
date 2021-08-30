@@ -1,6 +1,6 @@
 const express = require("express");
 const mysql = require("mysql2");
-const { endianness } = require("os");
+const inquirer = require("inquirer");
 
 const PORT = process.allowedNodeEnvironmentFlags.PORT || 3001;
 const app = express();
