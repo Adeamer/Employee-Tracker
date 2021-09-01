@@ -8,7 +8,6 @@ const sequelize = require("sequelize");
 const connection = require("./config/connection");
 
 const prompt = require("./config/prompts");
-const { Sequelize } = require("sequelize/types");
 require("console.table");
 
 // The banner for when you start the application
@@ -30,7 +29,7 @@ firstPrompt();
 function firstPrompt() {
     inquirer.prompt(prompt.firstPrompt).then( function ({ task }) {
         switch (task) {
-            case "View all Employees":
+            case "View All Employees":
                 viewAllEmployees();
                 break;
             case "Add Employee":
@@ -39,13 +38,13 @@ function firstPrompt() {
             case "Update Employee Role":
                 updateEmployeeRole();
                 break;
-            case "View all Roles":
+            case "View All Roles":
                 viewAllRoles();
                 break;
             case "Add Role":
                 addRole();
                 break;
-            case "View all Departments":
+            case "View All Departments":
                 viewAllDepartments();
                 break;
             case "Add Department":
