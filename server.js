@@ -2,11 +2,13 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const table = require("console.table");
+const sequelize = require("sequelize");
 
 //Mysql connection
 const connection = require("./config/connection");
 
 const prompt = require("./config/prompts");
+const { Sequelize } = require("sequelize/types");
 require("console.table");
 
 // The banner for when you start the application
@@ -50,7 +52,7 @@ function firstPrompt() {
                 addDepartment();
                 break;
             
-            default: "Exit"
+            case "Exit":
                 console.log("Goodbye!");
                 connection.end();
                 break;
@@ -131,7 +133,7 @@ function addEmployee() {
 									if (err) throw err;
 									console.log("\n" + res.affectedRows + " employee created");
                                     console.log("\n<<<<<<<<<<<<<<<<<<<< ⛔ >>>>>>>>>>>>>>>>>>>>\n",);
-									viewEmployee();
+									viewAllEmployee();
 								},
 							);
 						});
@@ -268,3 +270,7 @@ function addDepartment() {
 		viewDepartments();
 	});
 }
+
+sequelize.sync().then(() => {
+    app.listen(PORT, () => console.log("Now Listening"));
+});

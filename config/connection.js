@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
+const mysql = require("mysql2");
 
 const sequelize = new Sequelize(
   process.env.DB_NAME,
@@ -12,9 +13,5 @@ const sequelize = new Sequelize(
   }
 );
 
-// connect to the mysql server and database
-sequelize.connect(function (err) {
-	if (err) throw err;
-});
 
 module.exports = sequelize;
