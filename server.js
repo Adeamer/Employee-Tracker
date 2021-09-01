@@ -2,7 +2,7 @@
 const mysql = require("mysql2");
 const inquirer = require("inquirer");
 const table = require("console.table");
-const sequelize = require("sequelize");
+
 
 //Mysql connection
 const connection = require("./config/connection");
@@ -64,7 +64,7 @@ function firstPrompt() {
 function viewAllEmployees() {
 	console.log("Employee Rota:\n");
 
-	var query = `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
+	const query = `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
   FROM employee e
   LEFT JOIN role r
 	ON e.role_id = r.id
@@ -78,7 +78,7 @@ function viewAllEmployees() {
 
 		console.table(res);
         console.log("\n<<<<<<<<<<<<<<<<<<<< ⛔ >>>>>>>>>>>>>>>>>>>>\n");
-		firstPrompt();
+	     firstPrompt();
 	});
 }
 
@@ -132,7 +132,7 @@ function addEmployee() {
 									if (err) throw err;
 									console.log("\n" + res.affectedRows + " employee created");
                                     console.log("\n<<<<<<<<<<<<<<<<<<<< ⛔ >>>>>>>>>>>>>>>>>>>>\n",);
-									viewAllEmployee();
+									viewAllEmployees();
 								},
 							);
 						});
@@ -234,7 +234,7 @@ function addRole() {
 						console.log("\n" + res.affectedRows + " role created");
 						console.log("\n<<<<<<<<<<<<<<<<<<<< ⛔ >>>>>>>>>>>>>>>>>>>>\n");
 
-						viewRoles();
+						viewAllRoles();
 					},
 				);
 			});
@@ -266,10 +266,8 @@ function addDepartment() {
 			);
 		});
 		console.log("\n<<<<<<<<<<<<<<<<<<<< ⛔ >>>>>>>>>>>>>>>>>>>>\n");
-		viewDepartments();
+		viewAllDepartments();
 	});
 }
 
-sequelize.sync().then(() => {
-    app.listen(PORT, () => console.log("Now Listening"));
-});
+

@@ -87,4 +87,4 @@ module.exports = {
 		message: "What is the name of the new department?",
 	},
 
-}
+};
